@@ -1,9 +1,4 @@
-import logging
-
-import torchvision.transforms as transforms
 from tqdm import tqdm
-
-import globals
 from utils.data_loader import *
 from utils.rotation import *
 from utils.testing import test

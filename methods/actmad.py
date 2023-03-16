@@ -13,6 +13,7 @@ from utils.results_manager import ResultsManager
 
 log = logging.getLogger('MAIN.ACTMAD')
 
+
 class AverageMeter(object):
     """Computes and stores the average and current value"""
 
@@ -51,7 +52,6 @@ def get_out(output_holder):
 
 def get_clean_out(output_holder):
     out = torch.vstack(output_holder.outputs)
-
     out = torch.mean(out, dim=0)
     return out
 
@@ -63,7 +63,6 @@ def get_out_var(output_holder):
 
 
 def get_clean_out_var(out_holder):
-
     out = torch.vstack(out_holder.outputs)
     out = torch.var(out, dim=0)
     return out
@@ -123,7 +122,7 @@ def actmad(opt, model, half_precision=False):
         n_chosen_layers = len(chosen_bn_layers)
         save_outputs = [SaveOutput() for _ in range(n_chosen_layers)]
         clean_mean_act_list = [AverageMeter() for _ in range(n_chosen_layers)]
-        clean_var_act_list = [AverageMeter()  for _ in range(n_chosen_layers)]
+        clean_var_act_list = [AverageMeter() for _ in range(n_chosen_layers)]
         clean_mean_list_final = []
         clean_var_list_final = []
         with torch.no_grad():
@@ -238,5 +237,3 @@ def actmad(opt, model, half_precision=False):
         results.add_result('ActMAD', f'{opt.task} {severity_str}', map50, 'online')
 
     opt.lr = tmp_lr
-
-

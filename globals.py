@@ -1,4 +1,3 @@
-
 # Variables here are initialized with exemplary values and will be overwritten
 # based on commandline arguments
 SEVERTITIES = ['5']

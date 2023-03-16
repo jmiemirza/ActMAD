@@ -9,21 +9,15 @@ ROBUSTNESS_TASKS = [
 
 KITTI_TASKS = ['fog', 'rain', 'snow']
 
-# KITTI_TASKS = ['rain', 'fog', 'snow']
-
-# KITTI_TASKS = ['snow', 'rain', 'fog']
-
 
 PATHS = {
-    'sl': {
+    'jm': {
         'cifar10': {
             'root': '/mnt/linux_data/datasets/cifar10',
             'ckpt': '/home/sleitner/space/framework/checkpoints/cifar10/wrn/Hendrycks2020AugMixWRN.pt',
         },
         'imagenet-mini': {
             'root': '/mnt/linux_data/datasets/imagenet-mini',
-            # 'ckpt': '/home/sleitner/space/framework/checkpoints/imagenet-mini/res18/initialDefaultLearn.pt',
-            # 'ckpt': '/home/sleitner/space/framework/checkpoints/imagenet-mini/res18/res18_imgnet_default.pt',
             'ckpt': None
         },
         'imagenet': {
@@ -50,7 +44,6 @@ PATHS = {
         },
         'imagenet-mini': {
             'root': 'X:/thesis/imagenet-mini',
-            # 'ckpt': 'X:/thesis/framework/checkpoints/imagenet-mini/res18/initialDefaultLearn.pt',
             'ckpt': 'X:/thesis/res18_imgnet_default.pt',
         },
         'imagenet': {

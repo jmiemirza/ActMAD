@@ -24,12 +24,6 @@ args.dataroot
 |   |
 |   ├── ... other severities
 |
-├── snow
-|   ├── 5
-|   |   ├── *png
-|   |
-|   ├── ... other severities
-|
 ├── test.txt
 ├── train.txt
 └── val.txt

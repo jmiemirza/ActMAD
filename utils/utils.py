@@ -1,11 +1,6 @@
 import os
 from os.path import join
-
-import numpy as np
 import torch
-
-
-# from colorama import Fore
 
 
 def get_grad(params):

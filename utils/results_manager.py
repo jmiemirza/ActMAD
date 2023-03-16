@@ -17,7 +17,6 @@ class ResultsManager():
             cls._instance = super(ResultsManager, cls).__new__(cls)
         return cls._instance
 
-
     def __init__(self, metric='mAP@50'):
         if hasattr(self, 'results'):
             return
@@ -25,10 +24,8 @@ class ResultsManager():
         self.results = pd.DataFrame(columns=columns)
         self.metric = metric
 
-
     def has_results(self):
         return not self.results.empty
-
 
     def save_to_file(self, file_name=None):
         if not file_name:
@@ -36,7 +33,6 @@ class ResultsManager():
         else:
             path = 'results/' + file_name
         self.results.to_pickle(path)
-
 
     def load_from_file(self, file_name=None):
         if not file_name:
@@ -47,10 +43,9 @@ class ResultsManager():
             raise Exception('Results file not found')
         self.results = pd.read_pickle(path)
 
-
     def add_result(self, method, task, value, scenario):
         entry = pd.DataFrame([{
-            'method' : method,
+            'method': method,
             'task': task,
             'value': value,
             'scenario': scenario
@@ -66,7 +61,6 @@ class ResultsManager():
 
         self.multi_run_res[method][scenario][task].append(value)
 
-
     def print_multiple_runs_results(self):
         if not self.multi_run_res:
             return
@@ -79,17 +73,15 @@ class ResultsManager():
             for scenario, v1 in v2.items():
                 self.log.info(f'\t\tScenario: {scenario}')
                 for task, v in v1.items():
-                    self.log.info(f'\t\tTask: {task}')#, v content: {v}')
+                    self.log.info(f'\t\tTask: {task}')  # , v content: {v}')
                     self.log.info(f'\t\tMEAN: {mean(v):.3f}, VAR: {variance(v):.3f}, STDEV {stdev(v):.3f}')
         self.log.info('-------------------------------------------')
-
 
     def reset_results(self):
         if hasattr(self, 'summary'):
             delattr(self, 'summary')
         columns = ['method', 'task', 'value', 'scenario']
         self.results = pd.DataFrame(columns=columns)
-
 
     def generate_summary(self):
         self.summary = {}
@@ -105,7 +97,6 @@ class ResultsManager():
                 if not len(df):
                     continue
                 self.summary[scenario].loc[method] = list(df['value'])
-
 
     def print_summary(self):
         if not hasattr(self, 'summary'):
@@ -125,7 +116,7 @@ class ResultsManager():
         if not hasattr(self, 'summary'):
             self.generate_summary()
 
-        res = ('-' * 30) + 'START LATEX' +  ('-' * 30)
+        res = ('-' * 30) + 'START LATEX' + ('-' * 30)
         for scenario in self.summary.keys():
             hdrs = self.summary[scenario].columns.values
             # short_hdrs = [x.split('_')[0] for x in hdrs]
@@ -145,16 +136,15 @@ class ResultsManager():
                     res += "\\vspace{-.6mm}\\\\\n"
 
                 start += max_cols
-                if x == num_splits-2:
+                if x == num_splits - 2:
                     end = length
                 else:
                     end += max_cols
 
             res += "\\end{table}\n"
 
-        res += ('-' * 30) + 'END LATEX' +  ('-' * 30)
+        res += ('-' * 30) + 'END LATEX' + ('-' * 30)
         self.log.info(res)
-
 
     def plot_summary(self, file_name=None):
         import matplotlib.pyplot as plt
@@ -163,7 +153,7 @@ class ResultsManager():
 
         sns.set_style("whitegrid")
         g = sns.FacetGrid(data=self.results, col='scenario', hue='method',
-                          legend_out=True, height=4, aspect= 1.33)
+                          legend_out=True, height=4, aspect=1.33)
         g.map(sns.lineplot, 'task', 'value', marker='o')
         g.add_legend()
 
@@ -184,5 +174,3 @@ class ResultsManager():
         g.tight_layout()
         plt.savefig(path)
         # plt.show(block=True)
-
-
