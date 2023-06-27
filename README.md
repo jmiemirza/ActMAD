@@ -73,7 +73,7 @@ Then setup up user specific paths in the `PATHS` dictionary in `config.py`.
 
 ### CIFAR-10/100C
 For these experiments we use the pre-trained weights from [AugMix](https://arxiv.org/abs/1912.02781),
-hosted [here]([https://drive.google.com/drive/folders/1Yr3_IBB53b_DI2A6-KwLnypvgEUKSIHq?usp=sharing](https://drive.google.com/file/d/1wy7gSRsUZzCzj8QhmTbcnwmES_2kkNph/view)).
+hosted [here](https://drive.google.com/drive/folders/1Yr3_IBB53b_DI2A6-KwLnypvgEUKSIHq?usp=sharing](https://drive.google.com/file/d/1wy7gSRsUZzCzj8QhmTbcnwmES_2kkNph/view).
 
 Also, add the `PATH` to these weights.
 After setting up `PATHS` dictionary for a user, ActMad CIFAR-10/100 experiments
